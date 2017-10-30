@@ -14,10 +14,10 @@ module.exports = function HidePlayers(dispatch) {
 		command.add('hide', () => {
 			enable = !enable
 			refreshNearbyPlayers()
-			send(`[hide-players] : Hide players ${enable ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'}.`)
+			send(`Hide players ${enable ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'}<font>.</font>`)
 		})
 		function send(msg) {
-			command.message(`<font color="#FFFFFF">` + msg + `</font>`)
+			command.message(`[hide-players] : ` + msg)
 		}
 	} catch (e) {
 		console.log(`[ERROR] -- hide-players module --`)

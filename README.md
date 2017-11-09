@@ -1,9 +1,8 @@
 # hide-players
-tera-proxy module to hide/show players by chat command
+tera-proxy module to hide/show players
 
-### Usage
-`!hide [on/off]` in chat
+## Dependency
+`Command` module
 
-`!hide` without arguments will toggle.
-
-[slash](https://github.com/baldera-mods/slash) is supported but not required.
+## Usage
+`hide` toggle

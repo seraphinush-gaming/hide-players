@@ -4,8 +4,8 @@
 
 module.exports = function HidePlayers(dispatch) {
 
-	let enable = true
-	let visibleRange = 2500
+	let enable = true,
+		visibleRange = 2500
 
 	// command
 	try {

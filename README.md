@@ -5,4 +5,4 @@ tera-proxy module to hide/show players
 `Command` module
 
 ## Usage
-`hide` toggle
+Toggle : `hide`

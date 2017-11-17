@@ -5,4 +5,18 @@ tera-proxy module to hide/show players
 - `Command` module
 
 ## Usage
-- Toggle : `hide`
+### `hide`
+- Toggle on/off
+- Default is on
+
+## Info
+- Author : [wuaw](https://github.com/wuaw)
+
+## Changelog
+### 1.2
+- Updated code
+- Removed protocol version restriction
+### 1.1
+- Personalized code aesthetics
+### 1.0
+- Initial fork

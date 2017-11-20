@@ -2,6 +2,8 @@
 // - C_SET_VISIBLE_RANGE
 // - S_SPAWN_USER
 
+// Version 1.21 r:01
+
 module.exports = function HidePlayers(dispatch) {
 
 	let enable = true,
@@ -11,7 +13,7 @@ module.exports = function HidePlayers(dispatch) {
 	try {
 		const Command = require('command')
 		const command = Command(dispatch)
-		command.add('hide', () => {
+		command.add(['hide', 'ㅗㅑㅇㄷ'], () => {
 			enable = !enable
 			refreshNearbyPlayers()
 			send(`Hide players ${enable ? '<font color="#56B4E9">enabled</font>' : '<font color="#E69F00">disabled</font>'}<font>.</font>`)

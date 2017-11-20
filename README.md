@@ -6,6 +6,7 @@ tera-proxy module to hide/show players
 
 ## Usage
 ### `hide`
+### `ㅗㅑㅇㄷ`
 - Toggle on/off
 - Default is on
 
@@ -13,6 +14,8 @@ tera-proxy module to hide/show players
 - Original author : [wuaw](https://github.com/wuaw)
 
 ## Changelog
+### 1.21
+- Added command for Korean keyboard
 ### 1.2
 - Updated code
 - Removed protocol version restriction

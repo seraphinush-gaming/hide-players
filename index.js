@@ -2,9 +2,9 @@
 // - C_SET_VISIBLE_RANGE
 // - S_SPAWN_USER
 
-// Version 1.21 r:01
+// Version 1.3 r:01
 
-module.exports = function HidePlayers(dispatch) {
+module.exports = function HidePlayers(d) {
 
 	let enable = true,
 		visibleRange = 0
@@ -12,7 +12,7 @@ module.exports = function HidePlayers(dispatch) {
 	// command
 	try {
 		const Command = require('command')
-		const command = Command(dispatch)
+		const command = Command(d)
 		command.add(['hide', 'ㅗㅑㅇㄷ'], () => {
 			enable = !enable
 			refreshNearbyPlayers()
@@ -26,14 +26,15 @@ module.exports = function HidePlayers(dispatch) {
 	}
 
 	// code
-	dispatch.hook('C_SET_VISIBLE_RANGE', (event) => { visibleRange = event.range })
+	d.hook('C_SET_VISIBLE_RANGE', (e) => { visibleRange = e.range })
 	
-	dispatch.hook('S_SPAWN_USER', () => { if (enable) return false })
+	d.hook('S_SPAWN_USER', () => { if (enable) return false })
 
+	// helper
 	function refreshNearbyPlayers() {
-		dispatch.toServer('C_SET_VISIBLE_RANGE', { range: 1 })
+		d.toServer('C_SET_VISIBLE_RANGE', { range: 1 })
 		setTimeout(() => {
-			dispatch.toServer('C_SET_VISIBLE_RANGE', { range: visibleRange })
+			d.toServer('C_SET_VISIBLE_RANGE', { range: visibleRange })
 		}, 1000)
 	}
 	

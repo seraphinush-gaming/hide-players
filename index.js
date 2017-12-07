@@ -2,12 +2,25 @@
 // - C_SET_VISIBLE_RANGE
 // - S_SPAWN_USER
 
-// Version 1.3 r:01
+// Version 1.3 r:02
 
 module.exports = function HidePlayers(d) {
 
 	let enable = true,
 		visibleRange = 0
+
+	// code
+	d.hook('C_SET_VISIBLE_RANGE', (e) => { visibleRange = e.range })
+
+	d.hook('S_SPAWN_USER', () => { if (enable) return false })
+
+	// helper
+	function refreshNearbyPlayers() {
+		d.toServer('C_SET_VISIBLE_RANGE', { range: 1 })
+		setTimeout(() => { 
+			d.toServer('C_SET_VISIBLE_RANGE', { range: visibleRange }) 
+		}, 1000)
+	}
 
 	// command
 	try {
@@ -25,17 +38,4 @@ module.exports = function HidePlayers(d) {
 		console.log(`[ERROR] -- hide-players module --`)
 	}
 
-	// code
-	d.hook('C_SET_VISIBLE_RANGE', (e) => { visibleRange = e.range })
-	
-	d.hook('S_SPAWN_USER', () => { if (enable) return false })
-
-	// helper
-	function refreshNearbyPlayers() {
-		d.toServer('C_SET_VISIBLE_RANGE', { range: 1 })
-		setTimeout(() => {
-			d.toServer('C_SET_VISIBLE_RANGE', { range: visibleRange })
-		}, 1000)
-	}
-	
 }

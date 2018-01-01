@@ -17,6 +17,8 @@ tera-proxy module to hide/show players
 - Hides all players except guild and party members
 
 ## Changelog
+### 2.02
+- Updated code and font color
 ### 2.01
 - Updated code aesthetics
 ### 2.00

@@ -6,12 +6,12 @@
 // - S_PARTY_MEMBER_LIST
 // - S_SPAWN_USER
 
-// Version 2.01 r:00
+// Version 2.02 r:00
 
 module.exports = function HidePlayers(d) {
 
     let enable = true,
-        gameId = 0,
+        gameId = -1,
         visibleRange = 0
 
     let guild = [],
@@ -54,8 +54,8 @@ module.exports = function HidePlayers(d) {
             if (!arg) {
                 enable = !enable
                 refreshNearbyPlayers()
-                send(`Hide players ${enable ? 'enabled'.clr('5AFF39') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))
-            } else if (arg == 'refresh') {
+                send(`Hide players ${enable ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))
+            } else if (arg === 'refresh') {
                 refreshNearbyPlayers()
                 send(`Refreshed.`.clr('56B4E9'))
             } else send(`Invalid argument.`.clr('FF0000'))

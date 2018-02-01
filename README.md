@@ -18,6 +18,9 @@ tera-proxy module to hide/show players
 ## Changelog
 <details>
 
+    2.04
+    - Added zone blacklist for client crash hotfix
+    - Added Guardian Legion mission hotfix by [HugeDong69](https://github.com/hugedong69)
     2.03
     - Fixed error which rendered players with no guild
     2.02

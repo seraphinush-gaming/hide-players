@@ -7,11 +7,12 @@
 // - S_PARTY_MEMBER_LIST
 // - S_SPAWN_USER
 
-// Version 2.04 r:00
+// Version 2.05 r:00
 
-const blockZone = [
-    110,    // Battleground : Underground Arena
-    //7011,   // Guardian Legion mission : Shadow of the Gutrends
+const instance = [
+	102, 103, 110, 111, 112, 116, 117, 118, 119, // Battlegrounds
+    //7011,   // Guardian Legion mission : Shadow of the Gutrends -- fixed
+    9710,   // Broken Prison -- certain mechanic causes client to crash
     9720,   // Antaros' Abyss -- certain mechanic causes client to crash
     9739,   // Rebel's Hideout -- certain mechanic causes client to crash
     9920,   // Antaros' Abyss -- certain mechanic causes client to crash
@@ -21,6 +22,7 @@ const blockZone = [
 module.exports = function HidePlayers(d) {
 
     let enable = true,
+        enableParty = true,
         gameId = 0,
         myZone = 0,
         visibleRange = 0
@@ -31,7 +33,7 @@ module.exports = function HidePlayers(d) {
     // code
     d.hook('C_SET_VISIBLE_RANGE', (e) => { visibleRange = e.range })
     // refresh upon leaving party
-    d.hook('S_LEAVE_PARTY', () => { party.length = 0; refresh() })
+    d.hook('S_LEAVE_PARTY', () => { party.length = 0; if (enable) refresh() })
     d.hook('S_LOAD_TOPO', (e) => { myZone = e.zone })
     d.hook('S_LOGIN', (e) => { gameId = e.gameId })
 
@@ -44,16 +46,21 @@ module.exports = function HidePlayers(d) {
 
     // pre-req to load in party members
     d.hook('S_PARTY_MEMBER_LIST', (e) => {
-        if (blockZone.includes(myZone)) return
-        if (party.length == 0) refresh()
+        if (instance.includes(myZone)) return
+        if (enable && (party.length === 0 || party.length !== e.members.length)) refresh()
         for (let member of e.members)
             if (!member.gameId.equals(gameId))
                 party.push(member.gameId.toString())
     })
 
     d.hook('S_SPAWN_USER', (e) => {
-        if (blockZone.includes(myZone)) return
-        if (enable && !(guild.includes(e.guild) || party.includes(e.gameId.toString()))) return false
+        if (instance.includes(myZone)) return
+        if (enable) {
+            if (enableParty) {
+                if (!(guild.includes(e.guild) || party.includes(e.gameId.toString()))) return false
+            }
+            else return false
+        }
     })
 
     // credit : HugeDong69 for Guardian Legion mission crash fix
@@ -79,7 +86,11 @@ module.exports = function HidePlayers(d) {
                 refresh()
                 send(`Hide players ${enable ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))
             // refresh
-            } else if (arg === 'refresh') {
+            } else if (arg === 'all' || arg === '미ㅣ') {
+                enableParty = !enableParty
+                refresh()
+                send(`Show guild/party members ${enableParty ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))
+            } else if (arg === 'r' || arg === 'ㄱ' || arg === 'refresh') {
                 refresh()
                 send(`Refreshed.`.clr('56B4E9'))
             } else send(`Invalid argument.`.clr('FF0000'))

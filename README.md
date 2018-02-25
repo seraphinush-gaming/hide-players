@@ -8,7 +8,11 @@ tera-proxy module to hide/show players
 ### `hide` · `ㅗㅑㅇㄷ`
 - Toggle on/off
 - Default is on
-### `hide refresh`
+### Parameters
+#### `a` · ` ㅁ`
+- Toggle guild/party member on/off
+- Default is on
+#### `r` · `ㄱ` · `refresh`
 - Refresh filter
 
 ## Info
@@ -18,6 +22,12 @@ tera-proxy module to hide/show players
 ## Changelog
 <details>
 
+    2.05
+    - Added battleground to blacklist
+    - Revised refresh condition for leaving party
+    - Revised refresh condition for party length
+    - Revised refresh command
+    - Added `a` command parameter to toggle guild/party members
     2.04
     - Added zone blacklist for client crash hotfix
     - Added Guardian Legion mission hotfix by [HugeDong69](https://github.com/hugedong69)

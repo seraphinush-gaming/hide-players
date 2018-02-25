@@ -7,7 +7,7 @@
 // - S_PARTY_MEMBER_LIST
 // - S_SPAWN_USER
 
-// Version 2.05 r:00
+// Version 2.05 r:01
 
 const instance = [
 	102, 103, 110, 111, 112, 116, 117, 118, 119, // Battlegrounds
@@ -86,7 +86,7 @@ module.exports = function HidePlayers(d) {
                 refresh()
                 send(`Hide players ${enable ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))
             // refresh
-            } else if (arg === 'all' || arg === '미ㅣ') {
+            } else if (arg === 'a' || arg === 'ㅁ') {
                 enableParty = !enableParty
                 refresh()
                 send(`Show guild/party members ${enableParty ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}` + `.`.clr('FFFFFF'))

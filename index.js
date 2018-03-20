@@ -1,4 +1,4 @@
-// Version 2.06 r:00
+// Version 2.06 r:01
 
 const Command = require('command')
 const config = require('./config.json')
@@ -33,8 +33,8 @@ module.exports = function HidePlayers(d) {
     // pre-req to load in guild members
     d.hookOnce('S_GET_USER_LIST', (e) => {
         for (let character of e.characters)
-            if (!guild.includes(character.guildId) && character.guildId !== 0)
-                guild.push(character.guildId)
+            if (!guild.includes(character.guildName) && character.guildName !== '')
+                guild.push(character.guildName)
     })
 
     // TODO
@@ -56,7 +56,7 @@ module.exports = function HidePlayers(d) {
         if (instance.includes(myZone)) return
         if (enable) {
             if (enableParty) {
-                if (!(guild.includes(e.guildEmblemId) || party.includes(e.gameId.toString()))) return false
+                if (!(guild.includes(e.guild) || party.includes(e.gameId.toString()))) return false
                 else return
             }
             else return false

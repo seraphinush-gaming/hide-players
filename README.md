@@ -22,6 +22,9 @@ tera-proxy module to hide/show players
 ## Changelog
 <details>
 
+    2.06
+    - Added auto-update support
+    - Updated to latest tera-data definition format
     2.05
     - Added battleground to blacklist
     - Revised refresh condition for leaving party

@@ -22,8 +22,6 @@ tera-proxy module to hide/show players
 ## Changelog
 <details>
 
-    2.07
-    - Added S_USER_LOCATION block
     2.06
     - Added auto-update support
     - Updated to latest tera-data definition format

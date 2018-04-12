@@ -5,21 +5,21 @@ tera-proxy module to hide/show players
 - `Command` module
 
 ## Usage
-### `hide` · `ㅗㅑㅇㄷ`
-- Toggle on/off
+- __`hide` · `ㅗㅑㅇㄷ`__
+  - Toggle on/off
 ### Parameters
-#### `a` · ` ㅁ`
-- Toggle guild/party member on/off
-#### `r` · `ㄱ`
-- Refresh filter
+- __`a` · ` ㅁ`__
+  - Toggle guild/party member on/off
+- __`r` · `ㄱ`__
+  - Refresh filter
 
 ## Config
-### `enable`
-- Initialize module on/off
-- Default is on
-### `enableParty`
-- Initialize option to show guild/party member on/off
-- Default is on
+- __`enable`__
+  - Initialize module on/off
+  - Default is `true`
+- __`enableParty`__
+  - Initialize option to show guild/party member on/off
+  - Default is `true`
 
 ## Info
 - Original author : [wuaw](https://github.com/wuaw)
@@ -31,6 +31,9 @@ tera-proxy module to hide/show players
     2.06
     - Added auto-update support
     - Updated to latest tera-data definition format
+    - Refactored config file
+    -- Added `enable`
+    -- Added `enableParty`
     2.05
     - Added battleground to blacklist
     - Revised refresh condition for leaving party

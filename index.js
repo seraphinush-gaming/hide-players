@@ -1,4 +1,4 @@
-// Version 2.06 r:02
+// Version 2.06 r:03
 
 const Command = require('command')
 const config = require('./config.json')
@@ -27,8 +27,8 @@ module.exports = function HidePlayers(d) {
     d.hook('S_LOGIN', (e) => { myGameId = e.gameId })
     
     // credit : HugeDong69 for Guardian Legion mission crash fix
-    d.hook('S_FEARMOVE_STAGE', 'raw', () => { if (enable) return false })
-    d.hook('S_FEARMOVE_END', 'raw', () => { if (enable) return false })
+    d.hook('S_FEARMOVE_STAGE', (e) => { if (enable) return e.target.equals(myGameId) })
+    d.hook('S_FEARMOVE_END', (e) => { if (enable) return e.target.equals(myGameId) })
 
     // pre-req to load in guild members
     d.hookOnce('S_GET_USER_LIST', (e) => {

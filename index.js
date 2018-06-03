@@ -1,4 +1,4 @@
-// Version 2.06 r:04
+// Version 2.06 r:05
 
 const Command = require('command')
 const config = require('./config.json')
@@ -37,7 +37,6 @@ module.exports = function HidePlayers(d) {
                 guild.push(character.guildName)
     })
 
-    // TODO
     // pre-req to load in party members
     // if new party refresh
     // for every member in the party, ignore self
@@ -51,22 +50,20 @@ module.exports = function HidePlayers(d) {
                 party.push(member.gameId.toString())
     })
 
-    // TODO
     d.hook('S_SPAWN_USER', (e) => {
-        if (instance.includes(myZone)) return
-        if (enable) {
-            if (enableParty) {
-                if (!(guild.includes(e.guild) || party.includes(e.gameId.toString()))) return false
-                else return
-            }
+        if (!enable || instance.includes(myZone)) return
+        if (enableParty) {
+            if (guild.includes(e.guild)) return
+            else if (party.includes(e.gameId.toString())) return
             else return false
         }
+        else return false
     })
 
     // helper
     function refresh() {
-        d.toServer('C_SET_VISIBLE_RANGE', { range: 1 })
-        setTimeout(() => { d.toServer('C_SET_VISIBLE_RANGE', { range: visibleRange }) }, 1000)
+        d.send('C_SET_VISIBLE_RANGE', 1, { range: 1 })
+        setTimeout(() => { d.send('C_SET_VISIBLE_RANGE', 1, { range: visibleRange }) }, 1000)
     }
 
     // command

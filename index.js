@@ -1,4 +1,4 @@
-// Version 2.06 r:05
+// Version 2.06 r:06
 
 const Command = require('command')
 const config = require('./config.json')
@@ -20,18 +20,18 @@ module.exports = function HidePlayers(d) {
         visibleRange = 0
 
     // code
-    d.hook('C_SET_VISIBLE_RANGE', (e) => { visibleRange = e.range })
+    d.hook('C_SET_VISIBLE_RANGE', 1, (e) => { visibleRange = e.range })
     // reset existing array && refresh upon leaving party
     d.hook('S_LEAVE_PARTY', 'raw', () => { party.length = 0; if (enable) refresh() })
-    d.hook('S_LOAD_TOPO', (e) => { myZone = e.zone })
-    d.hook('S_LOGIN', (e) => { myGameId = e.gameId })
+    d.hook('S_LOAD_TOPO', 3, (e) => { myZone = e.zone })
+    d.hook('S_LOGIN', 10, (e) => { myGameId = e.gameId })
     
     // credit : HugeDong69 for Guardian Legion mission crash fix
-    d.hook('S_FEARMOVE_STAGE', (e) => { if (enable) return e.target.equals(myGameId) })
-    d.hook('S_FEARMOVE_END', (e) => { if (enable) return e.target.equals(myGameId) })
+    d.hook('S_FEARMOVE_STAGE', 1, (e) => { if (enable) return e.target.equals(myGameId) })
+    d.hook('S_FEARMOVE_END', 1, (e) => { if (enable) return e.target.equals(myGameId) })
 
     // pre-req to load in guild members
-    d.hookOnce('S_GET_USER_LIST', (e) => {
+    d.hookOnce('S_GET_USER_LIST', 13, (e) => {
         for (let character of e.characters)
             if (!guild.includes(character.guildName) && character.guildName !== '')
                 guild.push(character.guildName)
@@ -41,7 +41,7 @@ module.exports = function HidePlayers(d) {
     // if new party refresh
     // for every member in the party, ignore self
     // then add new party members to the list
-    d.hook('S_PARTY_MEMBER_LIST', (e) => {
+    d.hook('S_PARTY_MEMBER_LIST', 6, (e) => {
         if (instance.includes(myZone)) return
         if (party.length == 0) refresh()
         for (let member of e.members)
@@ -50,7 +50,7 @@ module.exports = function HidePlayers(d) {
                 party.push(member.gameId.toString())
     })
 
-    d.hook('S_SPAWN_USER', (e) => {
+    d.hook('S_SPAWN_USER', 13, (e) => {
         if (!enable || instance.includes(myZone)) return
         if (enableParty) {
             if (guild.includes(e.guild)) return

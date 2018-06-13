@@ -23,6 +23,7 @@ tera-proxy module to hide/show players
 
 ## Info
 - Original author : [wuaw](https://github.com/wuaw)
+- **Support seraph via paypal donations, thanks in advance : [paypal](https://www.paypal.me/seraphinush)**
 - Hides all players except guild and party/raid members
 
 ## Changelog

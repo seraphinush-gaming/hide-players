@@ -1,4 +1,4 @@
-// Version 2.06 r:06
+// Version 2.06 r:07
 
 const Command = require('command')
 const config = require('./config.json')
@@ -18,6 +18,25 @@ module.exports = function HidePlayers(d) {
         myZone = 0,
         party = [],
         visibleRange = 0
+
+    // command
+    command.add(['hide', 'ㅗㅑㅇㄷ'], (arg) => {
+        // toggle
+        if (!arg) {
+            enable = !enable
+            refresh()
+            send(`${enable ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')}`)
+        // hide/show all player
+        } else if (arg === 'a' || arg === 'ㅁ') {
+            enableParty = !enableParty
+            refresh()
+             send(`Show guild/party members ${enableParty ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}`)
+        // refresh
+        } else if (arg === 'r' || arg === 'ㄱ') {
+            refresh()
+            send(`Refreshed`.clr('56B4E9'))
+        } else send(`Invalid argument.`.clr('FF0000'))
+    })
 
     // code
     d.hook('C_SET_VISIBLE_RANGE', 1, (e) => { visibleRange = e.range })
@@ -66,24 +85,6 @@ module.exports = function HidePlayers(d) {
         setTimeout(() => { d.send('C_SET_VISIBLE_RANGE', 1, { range: visibleRange }) }, 1000)
     }
 
-    // command
-    command.add(['hide', 'ㅗㅑㅇㄷ'], (arg) => {
-        // toggle
-        if (!arg) {
-            enable = !enable
-            refresh()
-            send(`${enable ? 'Enabled'.clr('56B4E9') : 'Disabled'.clr('E69F00')}`)
-        // hide/show all player
-        } else if (arg === 'a' || arg === 'ㅁ') {
-            enableParty = !enableParty
-            refresh()
-             send(`Show guild/party members ${enableParty ? 'enabled'.clr('56B4E9') : 'disabled'.clr('E69F00')}`)
-        // refresh
-        } else if (arg === 'r' || arg === 'ㄱ') {
-            refresh()
-            send(`Refreshed`.clr('56B4E9'))
-        } else send(`Invalid argument.`.clr('FF0000'))
-    })
     function send(msg) { command.message(`[hide-players] : ` + msg) }
 
 }

@@ -1,6 +1,9 @@
 # hide-players
 tera-proxy module to hide/show players
 
+## Auto-update guide
+- Create a folder called `hide-players` in `tera-proxy/bin/node_modules` and download [module.json](https://raw.githubusercontent.com/ylennia-archives/hide-players/master/module.json) (right-click save link as...) into the folder
+
 ## Dependency
 - `Command` module
 

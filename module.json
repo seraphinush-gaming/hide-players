@@ -1,0 +1,5 @@
+{
+	"disableAutoUpdate": false,
+    "options": { "niceName": "hide-players" },
+    "servers": ["https://raw.githubusercontent.com/ylennia-archives/hide-players/master/"]
+}

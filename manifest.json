@@ -1,0 +1,20 @@
+{
+	"files": {
+		"README.md": "06694a87866ff195969572b4f29a242afb11c32f3d8e690d5c5f28a6612c6d0e",
+		"config.json": "6a02ea557502be65cdae496de95597e54a88bf42e67c33a17ffdd5dffd6cabe8",
+		"index.js": "5322c39ae67fcf229eae2b7a596bb05a231a84c156ef8dbc3cd0d106cf39a38d",
+		"instance.js": "aaf7c2cbba94080be403aa606c216b1e8cb051e4a1116bc3f803ae3cec52a928",
+		"module.json": "61b1768d64cf67403998c8896ee725f3552609640a187ba0f23bb7a008a700af"
+	},
+	"defs": {
+		"C_SET_VISIBLE_RANGE": 1,
+		"S_FEARMOVE_END": 1,
+		"S_FEARMOVE_STAGE": 1,
+		"S_GET_USER_LIST": 13,
+		"S_LEAVE_PARTY": "raw",
+		"S_LOAD_TOPO": 3,
+		"S_LOGIN": 10,
+		"S_PARTY_MEMBER_LIST": 6,
+		"S_SPAWN_USER": 13
+	}
+}
